@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%extends 'base.html' %}
+    {%block content%}
+    <ul class="list-group mb-5">
+        {% for choice in question.choice_set.all %}
+        <li class="list-group-item">
+            {{choice.choice_text}} <span class="badge bg-success float-end">
+                {{choice.votes}} vote{{choice.votes | pluralize}}</span>
+        </li>
+        {%endfor%}
+    </ul>
+    <a href="{% url 'polls:index' %}" class="btn btn-secondary">Back To Polls</a>
+    <a href="{% url 'polls:detail' question.id %}" class="btn btn-dark">Vote Again</a>
+    {%endblock%}
+</body>
+</html>

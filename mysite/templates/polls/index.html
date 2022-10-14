@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {%block content%}
+    <h1 class="text-center mb-3">Poll Question</h1>
+    {% if question_list %}
+    {% for question in question_list%}
+    <div class="card mb-3">
+        <div class="card-body">
+            <p class="lead text-center">
+                {{question.question_text}} 
+                <a href="{%url 'polls:detail' question.id%}" class="btn btn-primary btn-sm d-block mt-3">
+                    Vote Now  
+                </a>
+                <a href="{%url 'polls:result' question.id%}" class="btn btn-secondary btn-sm d-block mt-3">
+                    Result 
+                </a>
+            </p>
+        </div>
+    </div>
+    
+
+    {%endfor%}
+
+
+    {%else%}
+    <p> NO POLLS AVAILABLE</p>
+
+
+    {%endif%}
+
+
+
+
+    {%endblock%}
+    
+</body>
+</html>
